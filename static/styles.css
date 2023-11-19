@@ -1,0 +1,188 @@
+/* styles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F6F3B7;
+    margin-left: 100px;
+    display: fixed;
+}
+h1{
+    font-size: 54px;
+    color: #333;
+    margin-bottom: 25px;
+    margin-left: 50px;
+    font-family: 'Gabarito', sans-serif;
+}
+.crossword {
+    width: 500px;
+    height: 500px;
+    border-radius: 30px;
+    overflow: hidden; /* Ensures rounded corners are applied */
+    background-color: #E8B0B0;
+    display: flex;
+    align-items: stretch;
+    border:1px solid #333;
+    font-family: 'Gabarito', sans-serif;
+}
+
+.grid {
+      
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    gap: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 45px;
+    text-align: center;
+    font-family: 'Gabarito', sans-serif';
+}
+
+.cell00, .cell01, .cell02, .cell03, .cell04, .cell05, .cell06, .cell10, .cell11, .cell12, .cell13, .cell14, .cell15, .cell16, .cell20, .cell21, .cell22, .cell23, .cell24, .cell25, .cell26, .cell30, .cell31, .cell32, .cell33, .cell34, .cell35, .cell36, .cell40, .cell41, .cell42, .cell43, .cell44, .cell45, .cell46, .cell50, .cell51, .cell52, .cell53, .cell54, .cell55, .cell56, .cell60, .cell61, .cell62, .cell63, .cell64, .cell65, .cell66 {
+    width: calc(100%);
+    height: calc(100%);
+    border: 1px solid #333;
+    box-sizing: border-box;
+    aspect-ratio: 1; /* Ensures the cells maintain a 1:1 aspect ratio (squares) */
+}
+.question_tab {
+    position: fixed;
+    top: 50px;
+    right: 100px;
+    height: 100vh; /* Adjust the height as needed */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    border-radius: 30px;
+    background-color: #B3E5AB;
+    padding: 5px; /* Add padding for better visibility */
+    border: 1px solid #333;
+    font-family: 'Gabarito', sans-serif;
+}
+.main {
+    display: flex;
+}
+h2{
+    display: flex;
+    font-size: 54px;;
+    color: #333;
+    margin-bottom: 25px;
+    margin-right: 100px;
+    margin-left: 100px;
+    text-align: center;
+    font-family: 'Gabarito', sans-serif;
+}
+h4 {
+    margin-left: 50px ;
+    font-family: 'Gabarito', sans-serif;
+}
+h3{
+    margin-left: 50px ;
+    font-family: 'Gabarito', sans-serif;
+}
+form{
+    margin-left: 50px ;
+    font-family: 'Gabarito', sans-serif;
+    margin-top: 20px;
+    font-size: 18px;
+}
+.filled-cell {
+    background-color: #E87C7C;
+}
+.timer {
+    font-size: 32px ;
+    margin: 0 0 10px 65px;
+    font-family: 'Gabarito', sans-serif;
+}
+.question1,.question2,.question3,.question4,.question5,.question6{
+    display: flex;
+    font-family: 'Gabarito', sans-serif;;
+}
+input[type="text"] {
+    font-family: 'Gabarito', sans-serif;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+    outline: none; /* Remove default focus outline */   
+
+}
+.start-button{
+    height: 50px;
+    width: 100px;
+    margin-left: 530px ;
+    font-family: 'Gabarito', sans-serif;
+    font-size: 18px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+    outline: none; /* Remove default focus outline */   
+}
+.blurred {
+    filter: blur(5px); /* You can adjust the blur strength as needed */
+    transition: filter 0.5s ease; /* Add a smooth transition effect */
+}
+
+.unblurred {
+    filter: blur(0); /* No blur */
+    transition: filter 0.3s ease-in-out; /* Add transition for smooth effect */
+}
+/* Add this CSS for styling the pop-up */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #ABD3E5;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    /* Center the content within the popup */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Gabarito', sans-serif;
+}
+
+/* Enhance the styling of the OK button */
+.popup-content button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #04b0db; /* Green background color */
+    color: white; /* White text color */
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Gabarito', sans-serif;
+}
+
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.flashes{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #e4715a;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1; 
+
+}
+.submitAnswer1{
+    font-family: 'Gabarito', sans-serif;
+    font-size: 18px;
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */   
+    background-color: #B3E5AB;
+    color: #000;
+    cursor: pointer;
+
+}

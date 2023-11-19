@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Page</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Include jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Include Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Custom CSS -->
+    <style>
+        .tab-content {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-top: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Page</h2>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#questions" data-toggle="tab">Questions and Answers</a></li>
+            <li><a href="#leaderboard" data-toggle="tab">Leaderboard</a></li>
+            <li><a href="#passresets" data-toggle="tab">Password Resets</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- Questions and Answers tab -->
+            <div class="tab-pane fade in active" id="questions">
+                <form action="/admin" method="POST">
+                    <h2>Across</h2>
+                    <h5>Question 1</h5>
+                    <input type="text" name="question1" id = "question1" placeholder="Enter question here">
+                    <input type="text" name="answer1" id = "answer1" placeholder="Enter answer here">
+                    <h5>Question 2</h5>
+                    <input type="text" name="question2" id = "question2" placeholder="Enter question here">
+                    <input type="text" name="answer2" id ="answer2" placeholder="Enter answer here">
+                    <h5>Question 3</h5>
+                    <input type="text" name="question3" id = "question3" placeholder="Enter question here">
+                    <input type="text" name="answer3" id ="answer3" placeholder="Enter answer here">
+
+                    <h2>Down</h2>
+                    <h5>Question 4</h5>
+                    <input type="text" name="question4" id = "question4" placeholder="Enter question here">
+                    <input type="text" name="answer4" id ="answer4" placeholder="Enter answer here">
+                    <h5>Question 5</h5>
+                    <input type="text" name="question5" id = "question5" placeholder="Enter question here">
+                    <input type="text" name="answer5" id ="answer5" placeholder="Enter answer here">
+                    <h5>Question 6</h5>
+                    <input type="text" name="question6" id = "question6" placeholder="Enter question here">
+                    <input type="text" name="answer6" id ="answer6" placeholder="Enter answer here">
+                    <br>    
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+            <!-- Leaderboard tab -->
+            <div class="tab-pane fade" id="leaderboard">
+                <h3>Leaderboard</h3>
+                <!-- Add your code for Leaderboard tab here -->
+                <ol>
+                    {% for player in playerlist %}
+                        <li>{{ player }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+            <!-- Password Resets tab -->
+             <div class="tab-pane fade" id="passresets">
+                <h3>Password Resets</h3>
+                <form action="/admin" method="POST">
+                    Username: <input type="text" name="username" id="pass_reset" placeholder="Enter username here">
+                    <input type="submit" value="Reset Password">
+                </form>
+            
+            </div> 
+        </div>
+    </div>
+</body>
+</html>

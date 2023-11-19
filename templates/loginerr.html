@@ -1,0 +1,63 @@
+<!-- FILEPATH: /c:/Users/ADITYA KHALKAR/crossword try/templates/loginerr.html -->
+{% block head%}
+<link href="https://fonts.googleapis.com/css2?family=Gabarito&display=swap" rel="stylesheet">
+{% endblock %}
+<style>
+    body {
+        font-family: 'Gabarito', sans-serif;
+        background-color: #E3B9B9; 
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    #error {
+        text-align: center;
+        max-width: 400px;
+        padding: 30px;
+        background-color: #D97070; 
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
+        border: 1px solid ; 
+    }
+
+    p {
+        font-weight: bold;
+        font-size: 18px;
+        color: #ecf0f1; /* Light text color */
+        margin-top: 10px;
+    }
+
+    #error h2 {
+        margin-bottom: 20px;
+        color: #e44d26; /* Accent color for headers */
+    }
+    img {
+        position: absolute;
+        top: 180px;
+        border-radius: 50%;
+    }
+</style>
+{% block content %}
+  <img src="https://avatars.githubusercontent.com/u/89972956?v=4" alt="logo" width="100" height="100">
+  {% if error_type == 'invalid_credentials' %}
+  <div id="error">
+    <p>Invalid username or password. Please try again.</p>
+    </div>
+  {% elif error_type == 'privilege_escalation' %}
+  <div id="error">
+    <p>You do not have sufficient privileges to access this page.</p>
+    </div>
+  {% elif error_type == 'not_logged_in' %}
+    <div id="error">
+    <p>You must be logged in to access this page.</p>
+    </div>
+  {% else %}
+    <div id = "error">
+    <p>An unknown error occurred. Please try again later.</p>
+    </div>
+  {% endif %}
+{% endblock %}

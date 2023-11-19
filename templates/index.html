@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gabarito&display=swap" rel="stylesheet">
+    <title>7x7 Grid</title>
+</head>
+<body>
+    
+    <button class="start-button" id="start-button" onclick="openPopup()">Start</button>
+    <h1>Crossword Puzzle</h1>
+    <div class ="main">
+    <div class="crossword">
+        <div class="grid">
+            <!-- Crossword -->
+            {% for row in range(7)%}
+                {% for column in range(7) %}
+                <div class="cell{{row}}{{column}}" style="background-color: {{ '#E87C7C' if matrix[row][column] != ' ' else '#E8B0B0' }}">
+                </div>
+                {% endfor %}
+            {% endfor %}
+
+        </div>
+    </div >
+    <div class="timer-container">
+    <div class="timer" id="timer">00:00</div>
+    </div>
+    <div id="incorrect">  
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flashes">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    </div>
+
+
+    <div class="question_tab">
+        <!-- Content for the question_tab goes here -->
+        <h2>Questions & Clues</h2>
+        <h3>Across</h3>
+        <div class="question1 blurred">
+        <h4 id="question-form">1. {{question1}}</h4>
+        <form autocomplete="off" class="question-form">
+            Answer: <input type="text" name="answer1" id="answer1">
+            <button type="button" name="submitAnswer1" class="submitAnswer1" id="submitAnswer1">🗸</button>
+        </form>
+        </div>
+        <div class="question2 blurred">
+        <h4 id="question-form">2. {{question2}}</h4>
+        <form autocomplete="off" class="question-form">
+            Answer: <input type="text" name="answer2" id="answer2">
+            <button type="button" name="submitAnswer1" class="submitAnswer1" id="submitAnswer1">🗸</button></form>
+        </div>
+        <div class="question3 blurred">
+        <h4 id="question-form">3. {{question3}}</h4>
+        <form autocomplete="off" class="question-form">
+            Answer: <input type="text" name="answer3" id="answer3">
+            <button type="button" name="submitAnswer1" class="submitAnswer1" id="submitAnswer1">🗸</button></form>
+        </div>
+        <h3>Down</h3>
+        <div class="question4 blurred">
+        <h4 id="question-form">4. {{question4}}</h4>
+        <form autocomplete="off" class="question-form">
+            Answer: <input type="text" name="answer4" id="answer4">
+            <button type="button" name="submitAnswer1" class="submitAnswer1" id="submitAnswer1">🗸</button></form>
+        </div>
+        <div class="question5 blurred">
+        <h4 id="question-form">5. {{question5}}</h4>
+        <form autocomplete="off" class="question-form">
+            Answer: <input type="text" name="answer5" id="answer5">
+            <button type="button" name="submitAnswer1" class="submitAnswer1" id="submitAnswer1">🗸</button></form>
+        </div>
+        <div class="question6 blurred">
+        <h4 id="question-form">6. {{question6}}</h4>
+        <form autocomplete="off" class="question-form">
+            Answer: <input type="text" name="answer6" id="answer6">
+            <button type="button" name="submitAnswer1" class="submitAnswer1" id="submitAnswer1">🗸</button></form>
+        </div>
+
+    </div>
+    
+    <div id="custom-popup" class="popup">
+        <div class="popup-content">
+            <p>You are about to start the crossword puzzle. Are you ready?</p>
+            <button id="ok" onclick="closePopup()">OK</button>
+        </div>
+    </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        document.getElementById('submitAnswer1').addEventListener('click', function() {
+            fetcher(event);
+        });
+        function updatecrossword(user_matrix){
+            for (var i = 0; i < 7; i++) {
+                for (var j = 0; j < 7; j++) {
+                    var cell = document.querySelector('.cell' + String(i) + String(j));
+                    cell.innerText = user_matrix[i][j];
+                }
+            }
+        }
+        function fetcher(event){
+            event.preventDefault();
+            var answer1 = document.getElementById('answer1').value;
+
+        // Make a Fetch API request to your Flask route
+        fetch('/crossword', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ answer1: answer1, answer2: answer2, answer3: answer3, answer4: answer4, answer5: answer5, answer6: answer6 }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response data, if needed
+            updatecrossword(data.user_matrix)
+            console.log(data.user_matrix)
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    // Attach the fetcher function to the submit button click event
+    document.getElementById('submitAnswer1').addEventListener('click', fetcher);
+    </script>
+        
+    </body>
+</html>
